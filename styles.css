@@ -1,0 +1,251 @@
+html {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+}
+
+p {
+  font-family: "Mukta", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 0.5fr 3fr 1fr 0fr;
+  grid-template-areas:
+    "header header header header"
+    "main main main main"
+    "footer footer footer footer"
+    "aside aside aside aside";
+  justify-items: center;
+  align-items: center;
+  row-gap: 1rem;
+  background-color: cornsilk;
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+main {
+  grid-area: main;
+}
+
+button {
+  width: 100px;
+  height: 26px;
+  margin: 1rem auto;
+  padding: 0;
+  border: 0;
+  background: rgb(43, 60, 75);
+  cursor: pointer;
+  outline: none;
+  color: rgb(235, 235, 235);
+  font-weight: bold;
+  box-shadow: 0 1.5px 1px 1.5px rgb(20, 20, 20);
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: rgb(12, 12, 12);
+  /* box-shadow: 0 0 0 2.5px rgb(255, 255, 255), 2px 2px 6px 2px rgba(8, 8, 8, 0.8); */
+  color: white;
+}
+
+section {
+  background-color: burlywood;
+}
+
+.lib-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 3.5%;
+}
+
+article {
+  background-color: cadetblue;
+  margin: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 350px;
+  height: auto;
+}
+
+article h2,
+p {
+  margin: 0.5rem 1.5rem;
+}
+
+article h2 {
+}
+
+article p {
+}
+
+.book {
+}
+
+.book-title {
+}
+
+.delete-book {
+}
+
+.author {
+}
+
+.pages {
+}
+
+aside {
+  grid-area: aside;
+  background-color: skyblue;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+  width: 600px;
+  max-width: 100%;
+  min-height: 440px;
+  height: 450px;
+  max-height: 100%;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 20px 10px rgba(0, 0, 0, 0.5);
+}
+
+form {
+  display: flex;
+  opacity: 1;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Mukta", sans-serif;
+  margin: 2rem 2rem;
+}
+
+form h2 {
+  margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
+}
+
+.hide {
+  display: none;
+}
+
+.close-icon {
+  align-self: flex-end;
+  cursor: pointer;
+  padding: 0.6rem 0.5rem;
+  margin-top: 1rem;
+}
+
+.bar1,
+.bar3 {
+  width: 34px;
+  height: 6px;
+  background-color: rgb(0, 0, 0);
+}
+
+.bar1 {
+  transform: rotate(-45deg) translate(-3px, 2px);
+  -webkit-transform: rotate(-45deg) translate(-3px, 2px);
+}
+
+.bar3 {
+  transform: rotate(45deg) translate(-3px, -1px);
+  -webkit-transform: rotate(45deg) translate(-3px, -1px);
+}
+
+label {
+  margin-bottom: 0.3rem;
+  align-self: flex-start;
+  margin-left: 7.9rem;
+}
+
+input {
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  width: 50%;
+  padding: 6px 6px;
+  font-size: 14px;
+  border: none;
+}
+
+input[type="submit"] {
+  width: 120px;
+  height: 28px;
+  margin: 0.5rem 0;
+  font-family: "Mukta", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  box-shadow: 0 2px 3px 0 rgba(12, 12, 12, 0.7);
+  border-radius: 2px 2px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+input[type="submit"]:hover {
+  color: white;
+  background-color: black;
+}
+
+#pages {
+  /* width: 60px; */
+  overflow: hidden;
+}
+
+fieldset {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+}
+
+fieldset label {
+  margin: 0 0.2rem 0.5rem 0;
+}
+
+fieldset input {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+.form-p {
+  margin: 1rem 0 0.5rem 0;
+}
+
+.read {
+  margin: 0 1.5rem;
+}
+
+footer {
+  grid-area: footer;
+}
