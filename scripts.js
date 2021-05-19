@@ -1,42 +1,7 @@
-//THE TOGGLEREAD FUNCTION GETS DESTROYED WHEN PARSED FROM THE JSON, ALSO THE POPULATESTORAGE() REFRESHES EVERTIME FOR TESTING PURPORSES
-
-function storageAvailable(type) {
-  var storage;
-  try {
-    storage = window[type];
-    var x = "__storage_test__";
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return (
-      e instanceof DOMException &&
-      // everything except Firefox
-      (e.code === 22 ||
-        // Firefox
-        e.code === 1014 ||
-        // test name field too, because code might not be present
-        // everything except Firefox
-        e.name === "QuotaExceededError" ||
-        // Firefox
-        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
-      // acknowledge QuotaExceededError only if there's something already stored
-      storage &&
-      storage.length !== 0
-    );
-  }
-}
-
-if (storageAvailable("localStorage")) {
-  console.log("Yippee! We can use localStorage awesomeness");
-} else {
-  console.log("Too bad, no localStorage for us");
-}
-
 //Set up library
 let myLibrary = [];
 
-//Constructor for book objects
+/* //Constructor for book objects
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -48,7 +13,22 @@ Book.prototype.toggleRead = function (readVal) {
   console.log(`Read val was: ${this.read}`);
   this.read = readVal;
   console.log(`Now it is: ${this.read} for the book ${this.title}`);
-};
+}; */
+
+//Using class instead for creating book objects
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  toggleRead(readVal) {
+    console.log(`Read val was: ${this.read}`);
+    this.read = readVal;
+    console.log(`Now it is: ${this.read} for the book ${this.title}`);
+  }
+}
 
 //Create a few books
 let theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "295", "No");
@@ -71,13 +51,6 @@ let harryPotter = new Book(
 myLibrary.push(theHobbit);
 myLibrary.push(gameOfThrones);
 myLibrary.push(harryPotter);
-
-//UNCOMMENT TO MAKE LOCALSTORAGE PERSISTENT
-/* if (!localStorage.getItem("myLibrary")) {
-  populateStorage();
-} else {
-  //setStyles();
-} */
 
 function populateStorage() {
   //Set up library
@@ -166,9 +139,8 @@ function changeRead(event) {
     console.log("Hey we clicked a radio input type!");
     const newReadVal = event.target.value;
     console.log(`The clicked radio button choice was: ${newReadVal}`);
-    const bookToChange = event.target.parentElement.parentElement.getAttribute(
-      "data-bookid"
-    );
+    const bookToChange =
+      event.target.parentElement.parentElement.getAttribute("data-bookid");
     console.log(
       `The index for the book we want to change in the library array: ${bookToChange}`
     );
