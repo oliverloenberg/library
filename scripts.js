@@ -235,6 +235,22 @@ const closeBtn = document.querySelector(".close-icon");
 closeBtn.addEventListener("click", () => {
   console.log("Close button has been clicked");
   form.classList.toggle("hide");
+
+  const titleInputElement = document.getElementById("title");
+  titleInputElement.value = "";
+  const authorInputElement = document.getElementById("author");
+  authorInputElement.value = "";
+
+  const pagesInputElement = document.getElementById("pages");
+  pagesInputElement.value = "";
+
+  const titleHelpTxt = document.getElementById("title-help-txt");
+  titleHelpTxt.classList.add("invisible");
+  titleHelpTxt.classList.remove("fade-in");
+
+  const authorHelpTxt = document.getElementById("author-help-txt");
+  authorHelpTxt.classList.add("invisible");
+  authorHelpTxt.classList.remove("fade-in");
 });
 
 //Grab the submit button so we can add a listener to it
@@ -245,53 +261,65 @@ submitBtn.addEventListener("click", addBookToLibrary);
 //Here is how we add book to the library and close the add new book popup
 function addBookToLibrary() {
   const titleInputElement = document.getElementById("title");
-  let titleInput = titleInputElement.value;
-  //console.log(`${titleInput}`);
-
   const authorInputElement = document.getElementById("author");
-  let authorInput = authorInputElement.value;
-  //console.log(`${authorInput}`);
+  if (titleInputElement.value == "") {
+    console.log("The required fields have not been filled out!");
+    const titleHelpTxt = document.getElementById("title-help-txt");
+    console.log(titleHelpTxt);
+    titleHelpTxt.classList.toggle("invisible");
+    titleHelpTxt.classList.toggle("fade-in");
+  } else if (authorInputElement.value == "") {
+    const authorHelpTxt = document.getElementById("author-help-txt");
+    authorHelpTxt.classList.toggle("invisible");
+    authorHelpTxt.classList.toggle("fade-in");
+  } else {
+    let titleInput = titleInputElement.value;
+    //console.log(`${titleInput}`);
 
-  const pagesInputElement = document.getElementById("pages");
-  let pagesInput = pagesInputElement.value;
-  //console.log(`${pagesInput}`);
+    let authorInput = authorInputElement.value;
+    //console.log(`${authorInput}`);
 
-  let radioEl = document.getElementsByName("read");
-  //console.log(radioEl);
+    const pagesInputElement = document.getElementById("pages");
+    let pagesInput = pagesInputElement.value;
+    //console.log(`${pagesInput}`);
 
-  let didRead = "No";
+    let radioEl = document.getElementsByName("read");
+    //console.log(radioEl);
 
-  for (let i = 0; i < radioEl.length; i++) {
-    console.log("We are in the for loop!");
-    if (radioEl[i].checked) {
-      didRead = radioEl[i].value;
-    } else {
-      console.log("It didnt work!");
+    let didRead = "No";
+
+    for (let i = 0; i < radioEl.length; i++) {
+      console.log("We are in the for loop!");
+      if (radioEl[i].checked) {
+        didRead = radioEl[i].value;
+      } else {
+        console.log("It didnt work!");
+      }
     }
-  }
 
-  console.log(`${didRead}`);
+    console.log(`${didRead}`);
 
-  let newBook = new Book(titleInput, authorInput, pagesInput, didRead);
-  console.log(newBook);
+    let newBook = new Book(titleInput, authorInput, pagesInput, didRead);
+    console.log(newBook);
 
-  myLibrary.push(newBook);
-  console.log(myLibrary);
+    myLibrary.push(newBook);
+    console.log(myLibrary);
 
-  //Now lets update the book id to be the index in the array
-  let bookId = myLibrary.length - 1;
+    //Now lets update the book id to be the index in the array
+    let bookId = myLibrary.length - 1;
 
-  createBook(titleInput, authorInput, pagesInput, didRead, bookId);
+    createBook(titleInput, authorInput, pagesInput, didRead, bookId);
 
-  //Hide the form again
-  form.classList.toggle("hide");
+    //Hide the form again
+    form.classList.toggle("hide");
 
-  //Reset the field values and the radio buttons
-  titleInputElement.value = "";
-  authorInputElement.value = "";
-  pagesInputElement.value = "";
+    //Reset the field values and the radio buttons
+    titleInputElement.value = "";
+    authorInputElement.value = "";
+    pagesInputElement.value = "";
 
-  for (let i = 0; i < radioEl.length; i++) {
-    radioEl[i].checked = false;
+    for (let i = 0; i < radioEl.length; i++) {
+      radioEl[i].checked = false;
+    }
   }
 }

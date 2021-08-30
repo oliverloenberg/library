@@ -11,15 +11,21 @@
       href="https://fonts.googleapis.com/css2?family=Mukta&family=Playfair+Display:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Library</title>
   </head>
   <body>
     <header>
       <h1>Your Library</h1>
-      <button class="add-book">New Book</button>
     </header>
     <main>
       <section class="lib-container"></section>
+      <button class="add-book">Add New Book</button>
     </main>
     <aside class="form hide">
       <form action="#">
@@ -28,10 +34,16 @@
           <div class="bar3"></div>
         </div>
         <h2>Add new book</h2>
-        <label for="title">Title:</label>
+        <label for="title">Title (required):</label>
         <input type="text" name="title" id="title" required />
-        <label for="author">Author:</label>
+        <p class="required-info invisible" id="title-help-txt">
+          Needs to be atleast 1 character long
+        </p>
+        <label for="author">Author (required):</label>
         <input type="text" name="author" id="author" required />
+        <p class="required-info invisible" id="author-help-txt">
+          Needs to be atleast 1 character long
+        </p>
         <label for="pages">Pages long:</label>
         <input type="text" name="pages" id="pages" />
         <p class="form-p">Have you read it?</p>
@@ -41,10 +53,11 @@
           <label for="no">No</label>
           <input type="radio" id="no" name="read" value="No" />
         </fieldset>
-        <input class="submitBtn" type="button" value="Submit" />
+        <button class="submitBtn">Submit</button>
+        <!-- <input class="submitBtn" type="button" value="Submit" /> -->
       </form>
     </aside>
-    <footer><p>All rights reserved</p></footer>
+    <footer><p>Made by Oliver Lønberg</p></footer>
     <script src="scripts.js"></script>
   </body>
 </html>
